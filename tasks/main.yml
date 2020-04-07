@@ -41,3 +41,11 @@
     state: started
     enabled: yes
 
+#
+# By this point the 'deploy' user must have been created so we can
+# add it to the Docker group. This is a requirement with RKE (docs) but may not
+# be strictly necessary since the RKE command runs with sudo anyways
+#
+- name: Add the 'deploy' user to the 'docker' group
+  shell:
+    cmd: "usermod -aG docker deploy"
